@@ -1,4 +1,3 @@
-
 // Mock data for dashboard
 export const kpiData = [
   {
@@ -164,6 +163,117 @@ export const adoptionRateData = [
     activeUsers: 135,
     totalUsers: 202,
   },
+];
+
+export const aiToolsList = [
+  { id: "t1", name: "ChatGPT", category: "Text Generation" },
+  { id: "t2", name: "Claude", category: "Text Generation" },
+  { id: "t3", name: "DALL-E", category: "Image Generation" },
+  { id: "t4", name: "Midjourney", category: "Image Generation" },
+  { id: "t5", name: "GitHub Copilot", category: "Code Generation" },
+  { id: "t6", name: "Bard", category: "Text Generation" },
+  { id: "t7", name: "Stable Diffusion", category: "Image Generation" },
+  { id: "t8", name: "Jasper", category: "Content Creation" }
+];
+
+export const toolUsageData = [
+  { 
+    id: "t1", 
+    name: "ChatGPT", 
+    category: "Text Generation",
+    usageHours: 453,
+    costPerMonth: 12500,
+    savingsPerMonth: 38500,
+    roi: 308,
+    userCount: 215,
+    departments: ["Marketing", "Customer Service", "Product", "Operations"]
+  },
+  { 
+    id: "t2", 
+    name: "Claude", 
+    category: "Text Generation",
+    usageHours: 287,
+    costPerMonth: 9800,
+    savingsPerMonth: 26400,
+    roi: 269,
+    userCount: 128,
+    departments: ["Marketing", "Customer Service", "Product"]
+  },
+  { 
+    id: "t3", 
+    name: "DALL-E", 
+    category: "Image Generation",
+    usageHours: 164,
+    costPerMonth: 7200,
+    savingsPerMonth: 22800,
+    roi: 316,
+    userCount: 76,
+    departments: ["Marketing", "Product"]
+  },
+  { 
+    id: "t4", 
+    name: "Midjourney", 
+    category: "Image Generation",
+    usageHours: 142,
+    costPerMonth: 6500,
+    savingsPerMonth: 19200,
+    roi: 295,
+    userCount: 58,
+    departments: ["Marketing", "Product"]
+  },
+  { 
+    id: "t5", 
+    name: "GitHub Copilot", 
+    category: "Code Generation",
+    usageHours: 386,
+    costPerMonth: 8200,
+    savingsPerMonth: 53400,
+    roi: 651,
+    userCount: 92,
+    departments: ["Product", "Operations"]
+  },
+  { 
+    id: "t6", 
+    name: "Bard", 
+    category: "Text Generation",
+    usageHours: 156,
+    costPerMonth: 5400,
+    savingsPerMonth: 14500,
+    roi: 268,
+    userCount: 84,
+    departments: ["Marketing", "Customer Service"]
+  },
+  { 
+    id: "t7", 
+    name: "Stable Diffusion", 
+    category: "Image Generation",
+    usageHours: 98,
+    costPerMonth: 3200,
+    savingsPerMonth: 8900,
+    roi: 278,
+    userCount: 42,
+    departments: ["Marketing"]
+  },
+  { 
+    id: "t8", 
+    name: "Jasper", 
+    category: "Content Creation",
+    usageHours: 124,
+    costPerMonth: 4800,
+    savingsPerMonth: 16800,
+    roi: 350,
+    userCount: 65,
+    departments: ["Marketing", "Customer Service"]
+  }
+];
+
+export const toolUsageByMonth = [
+  { month: "Jan", ChatGPT: 280, Claude: 180, "GitHub Copilot": 220, DALL_E: 90, Midjourney: 70 },
+  { month: "Feb", ChatGPT: 310, Claude: 200, "GitHub Copilot": 240, DALL_E: 110, Midjourney: 90 },
+  { month: "Mar", ChatGPT: 350, Claude: 230, "GitHub Copilot": 270, DALL_E: 130, Midjourney: 100 },
+  { month: "Apr", ChatGPT: 380, Claude: 250, "GitHub Copilot": 310, DALL_E: 140, Midjourney: 120 },
+  { month: "May", ChatGPT: 410, Claude: 260, "GitHub Copilot": 330, DALL_E: 150, Midjourney: 130 },
+  { month: "Jun", ChatGPT: 450, Claude: 280, "GitHub Copilot": 370, DALL_E: 160, Midjourney: 140 }
 ];
 
 export const aiTasksData = [

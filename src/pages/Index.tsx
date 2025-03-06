@@ -4,6 +4,10 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { ChartCard } from "@/components/dashboard/ChartCard";
 import { InsightCard } from "@/components/dashboard/InsightCard";
 import { ProjectCard } from "@/components/dashboard/ProjectCard";
+import { ToolFilter } from "@/components/dashboard/ToolFilter";
+import { ToolBreakdown } from "@/components/dashboard/ToolBreakdown";
+import { ToolUsageChart } from "@/components/dashboard/ToolUsageChart";
+import { useState } from "react";
 import { 
   kpiData, 
   timeSeriesData, 
@@ -11,7 +15,8 @@ import {
   insightsData, 
   projectsData,
   costBreakdownData,
-  adoptionRateData
+  adoptionRateData,
+  aiToolsList
 } from "@/lib/data";
 import { DollarSign, Users, Clock, TrendingUp, AlertCircle } from "lucide-react";
 
@@ -32,12 +37,25 @@ const formatCurrency = (value: number) => {
 };
 
 const Index = () => {
+  // State for selected tools filter
+  const [selectedTools, setSelectedTools] = useState<string[]>(
+    aiToolsList.slice(0, 3).map(tool => tool.id)
+  );
+
   return (
     <DashboardLayout 
       title="GenAI Impact Dashboard" 
       subtitle="Overview of your AI investments and returns"
     >
       <div className="space-y-6">
+        {/* Tool Filter */}
+        <div className="mb-6">
+          <ToolFilter 
+            selectedTools={selectedTools} 
+            onToolsChange={setSelectedTools} 
+          />
+        </div>
+
         {/* KPI Section */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {kpiData.map((kpi) => (
@@ -51,6 +69,16 @@ const Index = () => {
               icon={iconMap[kpi.id as keyof typeof iconMap]}
             />
           ))}
+        </div>
+
+        {/* AI Tool Breakdown Section */}
+        <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-1">
+          <ToolBreakdown selectedTools={selectedTools} />
+        </div>
+
+        {/* Tool Usage Chart */}
+        <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-1">
+          <ToolUsageChart selectedTools={selectedTools} />
         </div>
 
         {/* Charts Section */}
