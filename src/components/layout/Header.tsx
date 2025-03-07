@@ -6,7 +6,8 @@ import {
   DropdownMenuItem, 
   DropdownMenuLabel, 
   DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem
 } from "@/components/ui/dropdown-menu";
 import { 
   BellIcon, 
@@ -14,16 +15,40 @@ import {
   Download, 
   Filter, 
   Search, 
-  UserRound 
+  UserRound,
+  Check
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { aiToolsList } from "@/lib/data";
+import { useState } from "react";
 
 interface HeaderProps {
   title: string;
   subtitle?: string;
   actions?: React.ReactNode;
+  selectedTools?: string[];
+  onToolsChange?: (tools: string[]) => void;
 }
 
-export function Header({ title, subtitle, actions }: HeaderProps) {
+export function Header({ 
+  title, 
+  subtitle, 
+  actions, 
+  selectedTools = [], 
+  onToolsChange 
+}: HeaderProps) {
+  const [filterOpen, setFilterOpen] = useState(false);
+  
+  const handleToolToggle = (toolId: string) => {
+    if (!onToolsChange) return;
+    
+    if (selectedTools.includes(toolId)) {
+      onToolsChange(selectedTools.filter(id => id !== toolId));
+    } else {
+      onToolsChange([...selectedTools, toolId]);
+    }
+  };
+  
   return (
     <div className="border-b">
       <div className="flex h-16 items-center justify-between px-6">
@@ -49,9 +74,39 @@ export function Header({ title, subtitle, actions }: HeaderProps) {
             <span className="hidden sm:inline">Last 30 days</span>
           </Button>
           
-          <Button variant="outline" size="icon">
-            <Filter className="h-4 w-4" />
-          </Button>
+          {onToolsChange && (
+            <DropdownMenu open={filterOpen} onOpenChange={setFilterOpen}>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-1">
+                  <Filter className="h-4 w-4" />
+                  <span className="hidden sm:inline">GenAI Tools</span>
+                  {selectedTools.length > 0 && (
+                    <Badge variant="secondary" className="ml-1">
+                      {selectedTools.length}
+                    </Badge>
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>Filter by AI Tool</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <div className="max-h-64 overflow-auto">
+                  {aiToolsList.map((tool) => (
+                    <DropdownMenuCheckboxItem
+                      key={tool.id}
+                      checked={selectedTools.includes(tool.id)}
+                      onCheckedChange={() => handleToolToggle(tool.id)}
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <span>{tool.name}</span>
+                        {selectedTools.includes(tool.id) && <Check className="h-4 w-4 ml-2" />}
+                      </div>
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
           
           <Button variant="outline" size="icon">
             <Download className="h-4 w-4" />

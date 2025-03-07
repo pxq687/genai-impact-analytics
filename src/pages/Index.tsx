@@ -4,6 +4,7 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { ChartCard } from "@/components/dashboard/ChartCard";
 import { InsightCard } from "@/components/dashboard/InsightCard";
 import { ProjectCard } from "@/components/dashboard/ProjectCard";
+import { useState } from "react";
 import { 
   kpiData, 
   timeSeriesData, 
@@ -11,7 +12,8 @@ import {
   insightsData, 
   projectsData,
   costBreakdownData,
-  adoptionRateData
+  adoptionRateData,
+  aiToolsList
 } from "@/lib/data";
 import { DollarSign, Users, Clock, TrendingUp, AlertCircle } from "lucide-react";
 
@@ -32,10 +34,17 @@ const formatCurrency = (value: number) => {
 };
 
 const Index = () => {
+  // State for selected tools filter
+  const [selectedTools, setSelectedTools] = useState<string[]>(
+    aiToolsList.slice(0, 3).map(tool => tool.id)
+  );
+
   return (
     <DashboardLayout 
       title="GenAI Impact Dashboard" 
       subtitle="Overview of your AI investments and returns"
+      selectedTools={selectedTools}
+      onToolsChange={setSelectedTools}
     >
       <div className="space-y-6">
         {/* KPI Section */}

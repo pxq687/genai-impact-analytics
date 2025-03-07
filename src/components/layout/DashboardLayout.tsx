@@ -1,31 +1,37 @@
 
-import { cn } from "@/lib/utils";
-import { Header } from "@/components/layout/Header";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { ReactNode } from "react";
+import { Header } from "./Header";
+import { Sidebar } from "./Sidebar";
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
-  className?: string;
+  children: ReactNode;
   title: string;
   subtitle?: string;
-  actions?: React.ReactNode;
+  actions?: ReactNode;
+  selectedTools?: string[];
+  onToolsChange?: (tools: string[]) => void;
 }
 
 export function DashboardLayout({
   children,
-  className,
   title,
   subtitle,
   actions,
+  selectedTools,
+  onToolsChange
 }: DashboardLayoutProps) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
-      <div className="flex flex-col flex-1 overflow-hidden bg-dashboard-gradient">
-        <Header title={title} subtitle={subtitle} actions={actions} />
-        <main className={cn("flex-1 overflow-y-auto p-6", className)}>
-          {children}
-        </main>
+      <div className="flex flex-1 flex-col overflow-hidden">
+        <Header 
+          title={title} 
+          subtitle={subtitle} 
+          actions={actions} 
+          selectedTools={selectedTools}
+          onToolsChange={onToolsChange}
+        />
+        <main className="flex-1 overflow-auto p-6 pb-16">{children}</main>
       </div>
     </div>
   );
