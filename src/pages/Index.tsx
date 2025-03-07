@@ -5,7 +5,6 @@ import { ChartCard } from "@/components/dashboard/ChartCard";
 import { InsightCard } from "@/components/dashboard/InsightCard";
 import { ProjectCard } from "@/components/dashboard/ProjectCard";
 import { ToolFilter } from "@/components/dashboard/ToolFilter";
-import { ToolBreakdown } from "@/components/dashboard/ToolBreakdown";
 import { ToolUsageChart } from "@/components/dashboard/ToolUsageChart";
 import { useState } from "react";
 import { 
@@ -69,11 +68,6 @@ const Index = () => {
               icon={iconMap[kpi.id as keyof typeof iconMap]}
             />
           ))}
-        </div>
-
-        {/* AI Tool Breakdown Section */}
-        <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-1">
-          <ToolBreakdown selectedTools={selectedTools} />
         </div>
 
         {/* Tool Usage Chart */}
