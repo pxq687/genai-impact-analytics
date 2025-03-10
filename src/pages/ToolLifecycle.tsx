@@ -31,6 +31,7 @@ export default function ToolLifecycle() {
     return toolRequestsData.filter(tool => tool.status === status).length;
   };
   
+  // Function to get the appropriate badge for a tool status
   const getStatusBadge = (status: ToolStatus) => {
     switch(status) {
       case "requested":
@@ -133,6 +134,26 @@ function ToolCard({ tool }: ToolCardProps) {
       month: 'short',
       day: 'numeric'
     });
+  };
+  
+  // Use the getStatusBadge function to get the appropriate badge
+  const getStatusBadge = (status: ToolStatus) => {
+    switch(status) {
+      case "requested":
+        return <Badge variant="outline">Requested</Badge>;
+      case "under_review":
+        return <Badge variant="secondary">Under Review</Badge>;
+      case "approved":
+        return <Badge variant="outline" className="bg-blue-100 text-blue-800 hover:bg-blue-100">Approved</Badge>;
+      case "rejected":
+        return <Badge variant="destructive">Rejected</Badge>;
+      case "active":
+        return <Badge variant="default" className="bg-green-600">Active</Badge>;
+      case "deprecated":
+        return <Badge variant="outline" className="bg-orange-100 text-orange-800 hover:bg-orange-100">Deprecated</Badge>;
+      default:
+        return <Badge>{status}</Badge>;
+    }
   };
   
   return (

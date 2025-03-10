@@ -104,6 +104,24 @@ export function Header({
                     </DropdownMenuCheckboxItem>
                   ))}
                 </div>
+                <DropdownMenuSeparator />
+                <div className="flex p-2 gap-2">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full h-8" 
+                    onClick={() => onToolsChange([])}
+                  >
+                    Clear All
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    className="w-full h-8" 
+                    onClick={() => onToolsChange(aiToolsList.map(t => t.id))}
+                  >
+                    Select All
+                  </Button>
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
