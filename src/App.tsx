@@ -11,6 +11,10 @@ import UsageMetrics from "./pages/UsageMetrics";
 import Performance from "./pages/Performance";
 import Adoption from "./pages/Adoption";
 import NotFound from "./pages/NotFound";
+import ToolLifecycle from "./pages/ToolLifecycle";
+import ToolRequestForm from "./pages/ToolRequestForm";
+import ToolDetails from "./pages/ToolDetails";
+import Surveys from "./pages/Surveys";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,10 @@ const App = () => (
           <Route path="/usage" element={<UsageMetrics />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/adoption" element={<Adoption />} />
+          <Route path="/tools" element={<ToolLifecycle />} />
+          <Route path="/tools/request" element={<ToolRequestForm />} />
+          <Route path="/tools/:id" element={<ToolDetails />} />
+          <Route path="/surveys" element={<Surveys />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

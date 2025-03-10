@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { 
   BarChart3, ChartPieIcon, GaugeCircle, 
   LayoutDashboard, LineChart, Settings, Sparkles, 
-  TrendingUp, Users2 
+  TrendingUp, Users2, LifeBuoy, ClipboardList
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -43,6 +43,16 @@ const navItems = [
     title: "User Adoption",
     icon: <Users2 className="h-5 w-5" />,
     href: "/adoption",
+  },
+  {
+    title: "Tool Lifecycle",
+    icon: <LifeBuoy className="h-5 w-5" />,
+    href: "/tools",
+  },
+  {
+    title: "User Surveys",
+    icon: <ClipboardList className="h-5 w-5" />,
+    href: "/surveys",
   },
 ];
 
